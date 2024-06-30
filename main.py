@@ -10,7 +10,7 @@ text_file = open(text_name, "w", encoding="UTF-8")
 for message in json_data["messages"]:
     date = message["date"][0:10]
     time = message["date"][11:19]
-    sender = message["from"]
+    sender = str(message["from"])
     message_text = ""
 
     text_entities = message["text_entities"]
