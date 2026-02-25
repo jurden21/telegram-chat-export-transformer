@@ -45,13 +45,17 @@ with open(text_name, "w", encoding="UTF-8") as text_file:
             if entity["type"] == "email":
                 message_text += entity["text"]
 
+            if entity["type"] == "bold":
+                message_text += "**" + entity["text"] + "**"
+
             if entity["type"] == "blockquote":
                 text_file.write(date + " " + time + " - " + sender + ": >> " + entity["text"] + "\n")
 
-            if entity["type"] != "plain" and entity["type"] != "link" and entity["type"] != "blockquote" and entity["type"] != "email":
+            if entity["type"] != "plain" and entity["type"] != "link" and entity["type"] != "blockquote" and entity["type"] != "email" and entity["type"] != "bold":
                 print("Script warning =", str(entity["type"]))
+                print("entity = " + str(entity))
+                print("text = " + message_text)
                 text_file.write("Script warning - Please add a handler of entity:\n")
-                text_file.write("message = " + str(message) + "\n")
                 text_file.write("entity = " + str(entity) + "\n")
                 text_file.write("text = " + message_text + "\n")
 
